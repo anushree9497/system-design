@@ -1,0 +1,55 @@
+.prop-builder {
+  .section {
+    padding: 16px 0;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+
+    h3 {
+      margin: 0;
+      font-weight: 500;
+    }
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 32px;
+    color: #999;
+
+    mat-icon {
+      font-size: 48px;
+      width: 48px;
+      height: 48px;
+      margin-bottom: 8px;
+    }
+  }
+
+  .prop-card {
+    margin-bottom: 12px;
+
+    mat-card-content {
+      padding-top: 16px;
+    }
+  }
+
+  .prop-row {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .prop-field {
+    flex: 1;
+    min-width: 140px;
+  }
+
+  .prop-description {
+    width: 100%;
+    margin-top: 8px;
+  }
+}

@@ -1,0 +1,170 @@
+<div class="component-form">
+  <h1 class="form-title">Submit a New Component</h1>
+  <p class="form-subtitle">
+    Fill in the details below to contribute a component to the design system.
+    A pull request will be created automatically.
+  </p>
+
+  <mat-progress-bar *ngIf="submitting" mode="indeterminate"></mat-progress-bar>
+
+  <mat-stepper linear #stepper>
+    <!-- Step 1: Metadata -->
+    <mat-step [stepControl]="metadataForm" label="Component Info">
+      <form [formGroup]="metadataForm" class="step-content">
+        <div class="form-row">
+          <mat-form-field appearance="outline" class="field-half">
+            <mat-label>Component Name</mat-label>
+            <input matInput formControlName="name" placeholder="e.g. fancy-card" />
+            <mat-hint>Lowercase, kebab-case. Will be used as filename.</mat-hint>
+            <mat-error *ngIf="metadataForm.get('name')?.hasError('pattern')">
+              Must be lowercase kebab-case (e.g. my-component)
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="field-half">
+            <mat-label>Selector</mat-label>
+            <input matInput formControlName="selector" placeholder="ds-fancy-card" />
+            <mat-hint>Auto-generated with ds- prefix</mat-hint>
+          </mat-form-field>
+        </div>
+
+        <mat-form-field appearance="outline" class="field-full">
+          <mat-label>Description</mat-label>
+          <textarea matInput formControlName="description" rows="3"
+                    placeholder="Describe what this component does, when to use it, and any key features...">
+          </textarea>
+          <mat-hint>Minimum 20 characters. This appears in Storybook docs.</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="field-half">
+          <mat-label>Category</mat-label>
+          <mat-select formControlName="category">
+            <mat-option *ngFor="let cat of categories" [value]="cat">
+              {{ cat | titlecase }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div class="step-actions">
+          <button mat-raised-button color="primary" matStepperNext
+                  [disabled]="metadataForm.invalid">
+            Next: Write Code
+          </button>
+        </div>
+      </form>
+    </mat-step>
+
+    <!-- Step 2: Code Editor -->
+    <mat-step label="Component Code">
+      <div class="step-content">
+        <app-code-editor
+          [initialCode]="componentCode"
+          (codeChange)="onCodeChange($event)">
+        </app-code-editor>
+
+        <div class="step-actions">
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-raised-button color="primary" matStepperNext>
+            Next: Define Props
+          </button>
+        </div>
+      </div>
+    </mat-step>
+
+    <!-- Step 3: Props Builder -->
+    <mat-step label="Inputs & Outputs">
+      <div class="step-content">
+        <app-prop-builder
+          (inputsChange)="onInputsChange($event)"
+          (outputsChange)="onOutputsChange($event)">
+        </app-prop-builder>
+
+        <div class="step-actions">
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-raised-button color="primary" matStepperNext>
+            Next: Preview & Story
+          </button>
+        </div>
+      </div>
+    </mat-step>
+
+    <!-- Step 4: Preview + Story Config -->
+    <mat-step label="Preview & Storybook">
+      <div class="step-content">
+        <div class="preview-story-grid">
+          <div class="preview-section">
+            <h3>Live Preview</h3>
+            <app-live-preview
+              [code]="componentCode"
+              [inputs]="inputs">
+            </app-live-preview>
+          </div>
+
+          <div class="story-section">
+            <h3>Storybook Configuration</h3>
+            <app-story-customizer
+              [componentName]="metadataForm.get('name')?.value"
+              [inputs]="inputs"
+              [outputs]="outputs"
+              (configChange)="onStoryConfigChange($event)">
+            </app-story-customizer>
+          </div>
+        </div>
+
+        <div class="step-actions">
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-raised-button color="primary" matStepperNext>
+            Next: Author Info
+          </button>
+        </div>
+      </div>
+    </mat-step>
+
+    <!-- Step 5: Author + Submit -->
+    <mat-step label="Submit">
+      <form [formGroup]="authorForm" class="step-content">
+        <h3>Author Information</h3>
+        <div class="form-row">
+          <mat-form-field appearance="outline" class="field-third">
+            <mat-label>Your Name</mat-label>
+            <input matInput formControlName="name" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="field-third">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" type="email" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="field-third">
+            <mat-label>GitHub Username</mat-label>
+            <input matInput formControlName="github" placeholder="octocat" />
+          </mat-form-field>
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <div class="submission-summary">
+          <h3>Submission Summary</h3>
+          <mat-card>
+            <mat-card-content>
+              <p><strong>Component:</strong> {{ metadataForm.get('name')?.value }}</p>
+              <p><strong>Selector:</strong> {{ metadataForm.get('selector')?.value }}</p>
+              <p><strong>Category:</strong> {{ metadataForm.get('category')?.value }}</p>
+              <p><strong>Inputs:</strong> {{ inputs.length }} defined</p>
+              <p><strong>Outputs:</strong> {{ outputs.length }} defined</p>
+            </mat-card-content>
+          </mat-card>
+        </div>
+
+        <div class="step-actions">
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-raised-button color="accent" (click)="submit()"
+                  [disabled]="submitting || authorForm.invalid">
+            <mat-icon>send</mat-icon>
+            Create Pull Request
+          </button>
+        </div>
+      </form>
+    </mat-step>
+  </mat-stepper>
+</div>

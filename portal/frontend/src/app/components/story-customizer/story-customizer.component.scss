@@ -1,0 +1,73 @@
+.story-customizer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  .full-width {
+    width: 100%;
+  }
+
+  .hint-text {
+    color: #666;
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
+
+  .arg-config {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    padding: 8px 12px;
+    background: #fafafa;
+    border-radius: 8px;
+
+    .arg-name {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      font-weight: 500;
+      min-width: 100px;
+      color: #1976d2;
+    }
+
+    .control-select {
+      flex: 1;
+    }
+
+    .options-field {
+      flex: 1;
+    }
+  }
+
+  .empty-hint {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px;
+    color: #999;
+    font-size: 14px;
+  }
+
+  .story-preview-card {
+    .preview-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      font-weight: 500;
+      color: #333;
+    }
+
+    .story-code {
+      background: #1e1e1e;
+      color: #d4d4d4;
+      padding: 16px;
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      line-height: 1.6;
+      overflow-x: auto;
+      white-space: pre;
+    }
+  }
+}

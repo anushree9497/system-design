@@ -1,0 +1,30 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "components",
+  "projectType": "library",
+  "sourceRoot": "libs/components/src",
+  "prefix": "ds",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package",
+      "outputs": ["{workspaceRoot}/dist/libs/components"],
+      "options": {
+        "project": "libs/components/ng-package.json"
+      }
+    },
+    "storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "port": 6006,
+        "configDir": ".storybook"
+      }
+    },
+    "build-storybook": {
+      "executor": "@storybook/angular:build-storybook",
+      "outputs": ["{workspaceRoot}/dist/storybook"],
+      "options": {
+        "configDir": ".storybook"
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+@use '@angular/material' as mat;
+
+// Custom Angular Material theme built on design tokens
+$ds-primary: mat.m2-define-palette(mat.$m2-blue-palette, 700, 300, 900);
+$ds-accent: mat.m2-define-palette(mat.$m2-pink-palette, 500, 100, 700);
+$ds-warn: mat.m2-define-palette(mat.$m2-red-palette);
+
+$ds-light-theme: mat.m2-define-light-theme((
+  color: (
+    primary: $ds-primary,
+    accent: $ds-accent,
+    warn: $ds-warn,
+  ),
+  typography: mat.m2-define-typography-config(
+    $font-family: var(--ds-font-family-base),
+  ),
+  density: 0,
+));
+
+$ds-dark-theme: mat.m2-define-dark-theme((
+  color: (
+    primary: $ds-primary,
+    accent: $ds-accent,
+    warn: $ds-warn,
+  ),
+));
+
+// Mixin consumers use to apply the theme
+@mixin ds-theme($theme: $ds-light-theme) {
+  @include mat.all-component-themes($theme);
+}
+
+@mixin ds-dark-theme() {
+  @include mat.all-component-colors($ds-dark-theme);
+}
+
+// Utility mixin for component authors
+@mixin ds-component-base() {
+  font-family: var(--ds-font-family-base);
+  line-height: var(--ds-line-height-normal);
+  box-sizing: border-box;
+}

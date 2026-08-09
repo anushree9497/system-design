@@ -1,0 +1,30 @@
+.ds-card {
+  border-radius: var(--ds-radius-lg);
+  transition: all var(--ds-transition-normal);
+
+  &--elevated {
+    box-shadow: var(--ds-shadow-md);
+
+    &:hover {
+      box-shadow: var(--ds-shadow-lg);
+    }
+  }
+
+  &--outlined {
+    box-shadow: none;
+    border: 1px solid var(--ds-color-neutral-300);
+  }
+
+  &--filled {
+    box-shadow: none;
+    background: var(--ds-color-neutral-100);
+  }
+
+  &--clickable {
+    cursor: pointer;
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+  }
+}

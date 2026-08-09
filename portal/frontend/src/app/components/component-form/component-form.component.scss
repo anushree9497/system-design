@@ -1,0 +1,63 @@
+.component-form {
+  .form-title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .form-subtitle {
+    color: #666;
+    margin-bottom: 32px;
+    font-size: 1.1rem;
+  }
+
+  .step-content {
+    padding: 24px 0;
+  }
+
+  .form-row {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .field-full {
+    width: 100%;
+  }
+
+  .field-half {
+    flex: 1;
+    min-width: 280px;
+  }
+
+  .field-third {
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .step-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid #eee;
+  }
+
+  .preview-story-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+
+    @media (max-width: 900px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .submission-summary {
+    margin-top: 24px;
+
+    mat-card {
+      margin-top: 12px;
+    }
+  }
+}

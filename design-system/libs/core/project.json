@@ -1,0 +1,23 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "core",
+  "projectType": "library",
+  "sourceRoot": "libs/core/src",
+  "prefix": "ds",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package",
+      "outputs": ["{workspaceRoot}/dist/libs/core"],
+      "options": {
+        "project": "libs/core/ng-package.json"
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/core"],
+      "options": {
+        "jestConfig": "libs/core/jest.config.ts"
+      }
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "name": "@ds/source",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build:core": "nx build core",
+    "build:components": "nx build components",
+    "build:community": "nx build community",
+    "build:all": "nx run-many --target=build --all",
+    "test": "nx run-many --target=test --all",
+    "lint": "nx run-many --target=lint --all",
+    "storybook": "nx run components:storybook",
+    "publish:core": "cd dist/libs/core && npm publish",
+    "publish:components": "cd dist/libs/components && npm publish",
+    "publish:community": "cd dist/libs/community && npm publish"
+  },
+  "dependencies": {
+    "@angular/animations": "^19.0.0",
+    "@angular/cdk": "^19.0.0",
+    "@angular/common": "^19.0.0",
+    "@angular/compiler": "^19.0.0",
+    "@angular/core": "^19.0.0",
+    "@angular/forms": "^19.0.0",
+    "@angular/material": "^19.0.0",
+    "@angular/platform-browser": "^19.0.0",
+    "@angular/platform-browser-dynamic": "^19.0.0",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.6.0",
+    "zone.js": "~0.14.0"
+  },
+  "devDependencies": {
+    "@angular/cli": "^19.0.0",
+    "@angular/compiler-cli": "^19.0.0",
+    "@nx/angular": "^20.0.0",
+    "@nx/storybook": "^20.0.0",
+    "@nx/workspace": "^20.0.0",
+    "@storybook/addon-docs": "^8.0.0",
+    "@storybook/addon-essentials": "^8.0.0",
+    "@storybook/angular": "^8.0.0",
+    "@changesets/cli": "^2.27.0",
+    "ng-packagr": "^19.0.0",
+    "nx": "^20.0.0",
+    "typescript": "~5.5.0"
+  }
+}
